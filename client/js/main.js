@@ -1,5 +1,5 @@
 angular.module('app', []);
 
-angular.module('app').controller('click', function($scope) {
+angular.module('app').controller('ctrlTest', function($scope) {
     $scope.test = "Working!!!";
 });
