@@ -8,7 +8,7 @@ app.set('view engine', 'html');
 app.use(express.static(__dirname + '/client'));
 
 app.get('*', function(req, res) {
-    res.render('index');
+    res.sendfile('index.html');
 });
 
 app.listen(process.env.PORT, process.env.IP);
