@@ -1,13 +1,19 @@
 <html>
 	<head>
 		<title>ToDo</title>
-		<link rel='stylesheet' href="bower_components/bootstrap/dist/css/boostratp.min.css"></link>
+		<link rel='stylesheet' href="bower_components/bootstrap/dist/css/bootstrap.min.css"></link>
 		<script type = "text/javascript" src="bower_components/angular/angular.min.js"></script>
 		<script type = "text/javascript" src="js/main.js"></script>
 	</head>
 	<body ng-app='app'>
-	    <div ng-controller='ctrlTest'>
-	        {{ test }}
+	<div ng-controller='ctrlTest'>
+		<h1>ToDo</h1>
+		<div class="list-group">
+  		<a href="#" class="list-group-item" ng-repeat='todo in todos'>
+		<h4 class="list-group-item-heading">{{ todo.name }}</h4>
+		<p class="list-group-item-text">{{ todo.description }}</p>
+		</a>
+	</div>
         </div>
 	</body>
 </html>
