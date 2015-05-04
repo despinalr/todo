@@ -7,5 +7,9 @@ angular.module('app').controller('ctrlTest', function($scope) {
     }, {
         name: 'ToDo 2',
         description: 'Description 2'
+    },
+    {
+        name: 'ToDo 3',
+        description: 'Description 3'
     }];
 });
