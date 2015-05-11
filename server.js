@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var cons = require('consolidate');
 
-var mongoose = require('mongoose').connect('mongodb://localhost/todo');
+var mongoose = require('mongoose').connect('mongodb://despinalr:lpdp451789@ds033419.mongolab.com:33419/todo');
 var todoModel = require('./models/todo');
 
 app.set('views', __dirname);
