@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var promise = require('bluebird');
 
 var todoSchema = new mongoose.Schema({
     title: { type: String },
@@ -7,15 +8,27 @@ var todoSchema = new mongoose.Schema({
 
 var todo = mongoose.model('todo', todoSchema);
 
+var todos = [
+    { title: 'GLV', description: 'Hacer GLV' },
+    { title: 'Compilar', description: 'Compilar con TFS Utils' },
+    { title: 'Pruebas', description: 'Ejecutar Pruebas' },
+    { title: 'Autotesting', description: 'Ejecutar Autotesting' },
+    { title: 'Checkin', description: 'Hacer Checkin' },
+    { title: 'Build', description: 'Esperar el Build' }
+    ];
+
+function findTodos(query) {
+    return promise.cast(mongoose.model('todo').find(query).exec());
+}
+
+var createTodo = promise.promisify(todo.create, todo);
+
 exports.seedTodos = function() {
-    todo.find({}, function(err, todos) {
-        if(todos.length === 0) {
-            todo.create({ title: 'GLV', description: 'Hacer GLV' });
-            todo.create({ title: 'Compilar', description: 'Compilar con TFS Utils' });
-            todo.create({ title: 'Pruebas', description: 'Ejecutar Pruebas' });
-            todo.create({ title: 'Autotesting', description: 'Ejecutar Autotesting' });
-            todo.create({ title: 'Checkin', description: 'Hacer Checkin' });
-            todo.create({ title: 'Build', description: 'Esperar el Build' });
+    return findTodos({}).then(function(collection) {
+        if(collection.length === 0) {
+            return promise.map(todos, function(atodo){
+                return createTodo(atodo);
+            });
         }
     });
 }
