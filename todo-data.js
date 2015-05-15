@@ -8,7 +8,8 @@ var todos = [
     { title: 'Pruebas', description: 'Ejecutar Pruebas' },
     { title: 'Autotesting', description: 'Ejecutar Autotesting' },
     { title: 'Checkin', description: 'Hacer Checkin' },
-    { title: 'Build', description: 'Esperar el Build' }
+    { title: 'Build', description: 'Esperar el Build' },
+    { title: 'DavidE', description: 'DavidE' }
     ];
 
 var findTodos = function(query) {
