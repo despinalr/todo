@@ -15,11 +15,13 @@ var todos = [
 var findTodos = function(query) {
     return promise.cast(todo.find(query).exec());
 }
+var createTodo = promise.promisify(todo.create, todo);
+
+// exports
 
 exports.connectDb = promise.promisify(mongoose.connect, mongoose);
 exports.findTodos = findTodos;
-
-var createTodo = promise.promisify(todo.create, todo);
+exports.saveTodo = createTodo;
 
 exports.seedTodos = function() {
     return findTodos({}).then(function(collection) {

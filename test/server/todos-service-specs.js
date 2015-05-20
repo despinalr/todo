@@ -15,7 +15,7 @@ var db = {
         todoSaved = todo;
     }
 };
-var todoService = require('../todo-services')(db, app);
+var todoService = require('../../todo-services')(db, app);
 
 describe("get todos", function() {
     
