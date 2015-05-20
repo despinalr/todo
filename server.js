@@ -14,8 +14,4 @@ tododata.connectDb('mongodb://despinalr:lpdp451789@ds033419.mongolab.com:33419/t
     tododata.seedTodos();
 });
 
-app.get('/', function(req, res) {
-    res.sendfile('index.html');
-});
-
 app.listen(process.env.PORT, process.env.IP);
