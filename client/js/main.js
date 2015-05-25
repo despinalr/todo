@@ -5,12 +5,17 @@ angular.module('app').controller('mainController', function($scope, $resource, t
     
     $scope.submit = function() {
         var todo = { title: $scope.title, description: $scope.description };
-        todos.save(todo);
-        $scope.todos.push(todo);
+        todos.save(todo, function(newTodo) {
+            $scope.todos.push(newTodo);
+            $scope.title = '';
+            $scope.description = '';
+        });
     },
     
     $scope.removeTodo = function(todo) {
-        todos.remove({ _id: todo._id });
-        //$scope.todos.remove(todo);
+        todos.remove({ _id: todo._id }, function(data) {
+            console.log('Data: ' + data);
+            $scope.todos = $resource('api/todos').query();
+        });
     }
 });

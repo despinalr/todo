@@ -14,8 +14,9 @@ module.exports = function(db, app) {
     });
     
     app.post('/api/todos', function(req, res) {
-        db.saveTodo(req.body);
-        res.end();
+        db.saveTodo(req.body).then(function(newTodo) {
+            res.send(newTodo);
+        });
     });
     
     app.delete('/api/todos/:_id', function(req, res) {
