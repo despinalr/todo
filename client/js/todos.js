@@ -1,3 +1,3 @@
 app.factory('todos', ['$resource', function($resource) {
-    return $resource('/api/todos');
+    return $resource('/api/todos/:_id');
 }]);

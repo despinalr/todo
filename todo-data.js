@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var promise = require('bluebird');
 var todo = require('./models/todo').todo;
+var objectId = mongoose.Types.ObjectId;
 
 var todos = [
     { title: 'GLV', description: 'Hacer GLV' },
@@ -15,6 +16,9 @@ var todos = [
 var findTodos = function(query) {
     return promise.cast(todo.find(query).exec());
 }
+var removeTodos = function(_id) {
+    return promise.cast(todo.remove({ "_id": _id }).exec());
+}
 var createTodo = promise.promisify(todo.create, todo);
 
 // exports
@@ -22,6 +26,7 @@ var createTodo = promise.promisify(todo.create, todo);
 exports.connectDb = promise.promisify(mongoose.connect, mongoose);
 exports.findTodos = findTodos;
 exports.saveTodo = createTodo;
+exports.removeTodo = removeTodos;
 
 exports.seedTodos = function() {
     return findTodos({}).then(function(collection) {

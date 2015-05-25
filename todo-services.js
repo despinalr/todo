@@ -17,4 +17,9 @@ module.exports = function(db, app) {
         db.saveTodo(req.body);
         res.end();
     });
+    
+    app.delete('/api/todos/:_id', function(req, res) {
+        db.removeTodo(req.params._id);
+        res.end();
+    });
 }
